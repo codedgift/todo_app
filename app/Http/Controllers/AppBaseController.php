@@ -17,10 +17,10 @@ class AppBaseController extends Controller
      * @param string $resp_code
      * @return mixed
      */
-    public function successResponse($data, $resp_message, $resp_description, string $resp_code = "00")
+    public function successResponse($data, $resp_message, $resp_description)
     {
         return \Response::json([
-            "resp_code" => $resp_code,
+            "resp_code" => GeneralConstants::SUCCESS_CODE,
             "resp_message" => $resp_message,
             "resp_description" => $resp_description,
             "data" => $data,
@@ -35,10 +35,10 @@ class AppBaseController extends Controller
      * @param string $resp_code
      * @return mixed
      */
-    public function errorResponse($error, $resp_message, $resp_description, string $resp_code = "01")
+    public function errorResponse($error, $resp_message, $resp_description)
     {
         return \Response::json([
-            "resp_code" => $resp_code,
+            "resp_code" => GeneralConstants::ERROR_CODE,
             "resp_message" => $resp_message ?? $error,
             "resp_description" => $resp_description ?? $error,
             "data" => null,
