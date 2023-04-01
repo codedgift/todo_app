@@ -5,7 +5,6 @@ use App\Http\Controllers\AppBaseController;
 use App\Models\User;
 use App\Repositories\RegistrationRepository;
 use App\Utilities\GeneralConstants;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 
 class RegistrationService extends AppBaseController
