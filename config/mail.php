@@ -96,6 +96,20 @@ return [
         'name' => env('MAIL_FROM_NAME', 'Example'),
     ],
 
+    'logo'=> env('LOGO_PATH', 'https://www.poptin.com/wp-content/uploads/2018/10/Purple-text-and-image-1.svg'),
+
+    'reply_to' => [
+        'address' => env('MAIL_REPLY_ADDRESS', 'hello@example.com'),
+        'name' => env('MAIL_REPLY_NAME', ''),
+        'telephone'=>env('MAIL_REPLY_TELEPHONE', ''),
+    ],
+
+    'cc' => [
+        'address' => env('MAIL_CC_ADDRESS', 'hello@example.com'),
+        'name' => env('MAIL_CC_NAME', ''),
+        'telephone'=>env('MAIL_CC_TELEPHONE', ''),
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Markdown Mail Settings
