@@ -49,7 +49,7 @@
   <table style="box-sizing: border-box; border-collapse: separate !important; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;" width="100%">
     <tr>
       <td class="align-center" style="box-sizing: border-box; font-family: 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif; font-size: 14px; vertical-align: top; text-align: center;" valign="top" align="center">
-        <a href="{{config('app.home_page_url')}}" style="box-sizing: border-box; color: #348eda; text-decoration: underline;"><img src="{{config('mail.logo')}}" height="50" alt="{{config('app.name')}}" style="-ms-interpolation-mode: bicubic; max-width: 100%;"></a>
+        <a href="{{config('app.url')}}" style="box-sizing: border-box; color: #348eda; text-decoration: underline;"><img src="{{config('mail.logo')}}" height="50" alt="{{config('app.name')}}" style="-ms-interpolation-mode: bicubic; max-width: 100%;"></a>
       </td>
     </tr>
   </table>
@@ -63,13 +63,6 @@
           		@yield('mail-content')
 			</td>
         </tr>
-        <tr>
-            <td style="box-sizing: border-box; font-family: 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif; font-size: 14px; vertical-align: top;" valign="top">
-                <a href="{{config('app.playstore_url')}}" style="box-sizing: border-box; text-decoration: underline;"><img src="{{asset('img/playstore.png')}}" height="30" alt="Playstore" style="-ms-interpolation-mode: bicubic; max-width: 100%;"></a>
-                <a href="{{config('app.appstore_url')}}" style="box-sizing: border-box; text-decoration: underline;"><img src="{{asset('img/appstore.png')}}" height="30" alt="Playstore" style="-ms-interpolation-mode: bicubic; max-width: 100%;"></a>
-
-              </td>
-        </tr>
       </table>
     </td>
   </tr>
@@ -78,8 +71,7 @@
   <table style="box-sizing: border-box; border-collapse: separate !important; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; color: #999999; font-size: 12px;" width="100%">
     <tr style="color: #999999; font-size: 12px;">
       <td class="align-center" style="box-sizing: border-box; font-family: 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif; vertical-align: top; font-size: 12px; color: #999999; text-align: center; padding: 20px 0;" valign="top" align="center">
-      	{{-- <p style="font-family: 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif; font-weight: normal; margin: 0; margin-bottom: 15px; color: #999999; font-size: 12px; text-align: center;">Questions? Email: {{config('mail.reply_to.address')}} or Call: {{config('mail.reply_to.telephone')}}</p> --}}
-        <p style="font-family: 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif; font-weight: normal; margin: 0; margin-bottom: 15px; color: #999999; font-size: 12px;">Copyright© 2019 Paymyrent.</p>
+        <p style="font-family: 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif; font-weight: normal; margin: 0; margin-bottom: 15px; color: #999999; font-size: 12px;">Copyright© 2023 Poptin.</p>
       </td>
     </tr>
   </table>
