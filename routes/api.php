@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\VerificationController;
 use Illuminate\Http\Request;
@@ -27,4 +28,7 @@ Route::middleware('guest:api')->group(function () {
 
     //----------------------- Verify Account Route ---------------------------------------//
     Route::post('verify/email', [VerificationController::class, 'verifyEmail']);
+
+    //-------------------- Login Route --------------------------------------------------//
+    Route::post('login', [LoginController::class, 'login']);
 });
