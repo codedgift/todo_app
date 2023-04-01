@@ -13,7 +13,7 @@ class RegistrationRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
@@ -23,7 +23,7 @@ class RegistrationRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             'firstname' => 'required',
@@ -37,7 +37,7 @@ class RegistrationRequest extends FormRequest
     /**
      * @return array
      */
-    public function messages()
+    public function messages(): array
     {
         return [
             'regex' => 'Password must contain Uppercase, lowercase and special characters',
