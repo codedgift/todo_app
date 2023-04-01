@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Auth\VerificationController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,9 +21,10 @@ use Illuminate\Support\Facades\Route;
 // });
 
 //---------------------------- Authentication Routes -------------------------------------//
-Route::middleware('guest:api')->group(function() {
+Route::middleware('guest:api')->group(function () {
     //------------------------ Registration Route ----------------------------------------//
     Route::post('register', [RegisterController::class, 'register']);
+
+    //----------------------- Verify Account Route ---------------------------------------//
+    Route::post('verify/email', [VerificationController::class, 'verifyEmail']);
 });
-
-
