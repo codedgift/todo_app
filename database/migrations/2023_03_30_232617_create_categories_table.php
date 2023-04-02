@@ -19,7 +19,6 @@ class CreateCategoriesTable extends Migration
             $table->string('name');
             $table->longText('description')->nullable();
             $table->timestamps();
-            $table->softDeletes();
 
             // Foreign key constraints
             $table->foreign('user_id')->references('id')->on('users');

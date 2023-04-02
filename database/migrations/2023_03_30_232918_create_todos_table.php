@@ -19,7 +19,6 @@ class CreateTodosTable extends Migration
             $table->enum('status', ['0', '1'])->default('0')->comment('O means Not Started, 1 means Completed');
             $table->string('name');
             $table->timestamps();
-            $table->softDeletes();
             
             // Foreign key constraints
             $table->foreign('task_id')->references('id')->on('tasks');

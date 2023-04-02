@@ -25,7 +25,6 @@ class CreateTasksTable extends Migration
             $table->date('start_date');
             $table->date('end_date');
             $table->timestamps();
-            $table->softDeletes();
 
             // Foreign key constraints
             $table->foreign('user_id')->references('id')->on('users');
