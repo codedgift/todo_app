@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use App\Utilities\GeneralConstants;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
 
 class TaskRepository extends AppBaseController
 {
@@ -117,5 +118,40 @@ class TaskRepository extends AppBaseController
 
         $message = "Task Data Updated Successfully";
         return $this->successResponse('Successfully Updated', GeneralConstants::SUCCESS_TEXT, $message, $message);
+    }
+
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public function deleteTask($id)
+    {
+        DB::beginTransaction();
+
+        try {
+
+            // Get the task and its associated todos
+            $task = Task::with('todos')->findOrFail($id);
+
+            // Delete the todos
+            $task->todos()->delete();
+
+            // Delete the task
+            $task->delete();
+
+            DB::commit();
+
+            $message = "Task and associated todos have been deleted successfully";
+
+            return $this->successResponse('Successfully Deleted', GeneralConstants::SUCCESS_TEXT, $message, $message);
+
+        } catch (Exception $e) {
+
+            DB::rollback();
+
+            $message = "Failed to delete task and associated todos";
+            return $this->errorResponse($e->getMessage(), GeneralConstants::ERROR_TEXT, $message);
+
+        }
     }
 }

@@ -50,4 +50,15 @@ class TaskController extends AppBaseController
 
         return $this->taskService->updateTask($request, $id, $user);
     }
+
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public function destroy($id)
+    {
+        auth('api')->user();
+
+        return $this->taskService->deleteTask($id);
+    }
 }

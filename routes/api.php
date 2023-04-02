@@ -60,4 +60,7 @@ Route::middleware('jwt.auth')->prefix('auth')->group(function() {
 
     //--------------- Update Task Route -----------------------------------------------//
     Route::patch('task/{id}/update', [TaskController::class, 'update']);
+
+    //------------- Delete Task Route ------------------------------------------------//
+    Route::delete('task/{id}/delete', [TaskController::class, 'destroy']);
 });

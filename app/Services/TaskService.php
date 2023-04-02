@@ -135,4 +135,13 @@ class TaskService extends AppBaseController
 
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public function deleteTask($id)
+    {
+        return $this->taskRepository->deleteTask($id);
+    }
+
 }
