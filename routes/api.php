@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\VerificationController;
+use App\Http\Controllers\CategoryController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -31,4 +32,10 @@ Route::middleware('guest:api')->group(function () {
 
     //-------------------- Login Route --------------------------------------------------//
     Route::post('login', [LoginController::class, 'login']);
+});
+
+//----------------------- Categories Routes --------------------------------------------//
+Route::middleware('jwt.auth')->prefix('auth')->group(function() {
+    //---------------- Create Category Route -------------------------------------------//
+    Route::post('create/category', [CategoryController::class, 'create']);
 });
