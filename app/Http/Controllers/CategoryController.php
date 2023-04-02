@@ -26,9 +26,9 @@ class CategoryController extends AppBaseController
      */
     public function index()
     {
-        auth('api')->user();
+        $user = auth('api')->user();
 
-        return $this->categoryService->getAllCategory();
+        return $this->categoryService->getAllCategory($user);
     }
 
     /**

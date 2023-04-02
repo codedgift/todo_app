@@ -37,9 +37,9 @@ class CategoryService extends AppBaseController
     /**
      * @return mixed
      */
-    public function getAllCategory()
+    public function getAllCategory($user)
     {
-        return $this->categoryRepository->allCategory();
+        return $this->categoryRepository->allCategory($user);
     }
 
     /**

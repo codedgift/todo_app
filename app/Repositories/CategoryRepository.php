@@ -57,10 +57,10 @@ class CategoryRepository extends AppBaseController
     /**
      * @return mixed
      */
-    public function allCategory()
+    public function allCategory($user)
     {
-        $categories = Cache::remember('categories', 5, function () {
-            return Category::all();
+        $categories = Cache::remember('categories_' . $user->id, 5, function () use ($user) {
+            return Category::where('user_id', $user->id)->get();
         });
 
         $message = "All Categories";
