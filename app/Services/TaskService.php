@@ -144,4 +144,22 @@ class TaskService extends AppBaseController
         return $this->taskRepository->deleteTask($id);
     }
 
+    /**
+     * @param Request $request
+     * @param $user
+     * @param $id
+     * @return mixed
+     */
+    public function changeTaskPriority(Request $request, $user, $id)
+    {
+        if ($this->validateTaskID($id, $user) == NULL) {
+            $error = "Invalid Task ID";
+            $message = "Task ID does not belong to this user";
+
+            return $this->errorResponse($error, GeneralConstants::ERROR_TEXT, $message);
+        }
+
+        return $this->taskRepository->changeTaskPriority($request, $id);
+    }
+
 }

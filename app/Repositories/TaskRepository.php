@@ -154,4 +154,17 @@ class TaskRepository extends AppBaseController
 
         }
     }
+
+    /**
+     * @param Request $request
+     * @param $id
+     * @return mixed
+     */
+    public function changeTaskPriority(Request $request, $id)
+    {
+        $task = Task::where('id', $id)->update(['priority' => $request['priority']]);
+
+        $message = "Task Data Updated Successfully";
+        return $this->successResponse('Successfully Updated!', GeneralConstants::SUCCESS_TEXT, $message, $message);
+    }
 }

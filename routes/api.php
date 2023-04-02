@@ -63,4 +63,7 @@ Route::middleware('jwt.auth')->prefix('auth')->group(function() {
 
     //------------- Delete Task Route ------------------------------------------------//
     Route::delete('task/{id}/delete', [TaskController::class, 'destroy']);
+
+    //------------ Change Task Priority Route ----------------------------------------//
+    Route::patch('task/change/{id}/priority', [TaskController::class, 'changeTaskPriority']);
 });

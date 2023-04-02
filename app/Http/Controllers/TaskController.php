@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ChangeTaskPriorityRequest;
 use App\Http\Requests\TaskRequest;
 use App\Services\TaskService;
 use Illuminate\Http\Request;
@@ -60,5 +61,17 @@ class TaskController extends AppBaseController
         auth('api')->user();
 
         return $this->taskService->deleteTask($id);
+    }
+
+    /**
+     * @param ChangeTaskPriorityRequest $request
+     * @param $id
+     * @return mixed
+     */
+    public function changeTaskPriority(ChangeTaskPriorityRequest $request, $id)
+    {
+        $user = auth('api')->user();
+
+        return $this->taskService->changeTaskPriority($request, $user, $id);
     }
 }
