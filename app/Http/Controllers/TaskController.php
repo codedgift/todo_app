@@ -38,4 +38,16 @@ class TaskController extends AppBaseController
 
         return $this->taskService->createTask($request, $user);
     }
+
+    /**
+     * @param Request $request
+     * @param $id
+     * @return mixed
+     */
+    public function update(Request $request, $id)
+    {
+        $user = auth('api')->user();
+
+        return $this->taskService->updateTask($request, $id, $user);
+    }
 }

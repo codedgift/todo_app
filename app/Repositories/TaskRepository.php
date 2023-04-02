@@ -58,4 +58,27 @@ class TaskRepository extends AppBaseController
             return $this->errorResponse($e->getMessage(), GeneralConstants::ERROR_TEXT, $message);
         }
     }
+
+    /**
+     * @param Request $request
+     * @param $id
+     * @return mixed
+     */
+    public function updateTask(Request $request, $id)
+    {
+        $taskData = [
+            'category_id' => $request['category_id'],
+            'status' => $request['status'],
+            'name' => $request['name'],
+            'description' => $request['description'],
+            'priority' => $request['priority'],
+            'start_date' => $request['start_date'],
+            'end_date' => $request['end_date']
+        ];
+
+        Task::where('id', $id)->update($taskData);
+
+        $message = "Task Data Updated Successfully";
+        return $this->successResponse('Successfully Updated', GeneralConstants::SUCCESS_TEXT, $message, $message);
+    }
 }

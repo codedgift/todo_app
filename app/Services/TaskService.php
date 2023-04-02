@@ -90,4 +90,49 @@ class TaskService extends AppBaseController
 
     }
 
+    /**
+     * @param Request $request
+     * @param $id
+     * @param $user
+     * @return mixed
+     */
+    public function updateTask(Request $request, $id, $user)
+    {
+        if (!$this->validateDateRange($request['start_date'], $request['end_date'])) {
+            $error = "Invalid Date Range";
+            $message = "Start Date must be greater than End Date";
+
+            return $this->errorResponse($error, GeneralConstants::ERROR_TEXT, $message);
+        }
+
+        if ($this->validateTaskID($id, $user) == NULL) {
+            $error = "Invalid Task ID";
+            $message = "Task ID does not belong to this user";
+
+            return $this->errorResponse($error, GeneralConstants::ERROR_TEXT, $message);
+        }
+
+        if ($this->validateCategoryIDBelongsToAUser($request['category_id'], $user) == NULL) {
+            $error = "Invalid Category ID";
+            $message = "Category ID does not belong to this user";
+
+            return $this->errorResponse($error, GeneralConstants::ERROR_TEXT, $message);
+        }
+
+        return $this->taskRepository->updateTask($request, $id);
+    }
+
+    /**
+     * @param $id
+     * @param $user
+     * @return mixed
+     */
+    public function validateTaskID($id, $user)
+    {
+        return Task::where('user_id', $user->id)
+                            ->where('id', $id)
+                            ->first();
+
+    }
+
 }

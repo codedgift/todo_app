@@ -57,4 +57,7 @@ Route::middleware('jwt.auth')->prefix('auth')->group(function() {
 
     //---------------- Get All Task Route ---------------------------------------------//
     Route::get('get/all/task', [TaskController::class, 'index']);
+
+    //--------------- Update Task Route -----------------------------------------------//
+    Route::patch('task/{id}/update', [TaskController::class, 'update']);
 });
