@@ -41,4 +41,7 @@ Route::middleware('jwt.auth')->prefix('auth')->group(function() {
 
     //-------------- Get All Cateogries Route -----------------------------------------//
     Route::get('get/all/category', [CategoryController::class, 'index']);
+
+    //-------------- Update Cateogry Route --------------------------------------------//
+    Route::patch('category/{id}/update', [CategoryController::class, 'update']);
 });

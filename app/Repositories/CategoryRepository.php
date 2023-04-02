@@ -66,4 +66,19 @@ class CategoryRepository extends AppBaseController
         return $this->successResponse($categories, GeneralConstants::SUCCESS_TEXT, $message, $message);
     }
 
+    /**
+     * @param Request $request
+     * @param $id
+     * @return mixed
+     */
+    public function updateCategory(Request $request, $id)
+    {
+        $updateData = ['name' => $request['name'], 'description' => $request['description']];
+
+        Category::where('id', $id)->update($updateData);
+
+        $message = "Category Data Updated Successfully";
+        return $this->successResponse('Successfully Updated', GeneralConstants::SUCCESS_TEXT, $message, $message);
+    }
+
 }

@@ -41,4 +41,14 @@ class CategoryService extends AppBaseController
     {
         return $this->categoryRepository->allCategory();
     }
+
+    /**
+     * @param Request $request
+     * @param $id
+     * @return mixed
+     */
+    public function updateCategory(Request $request, $id)
+    {
+        return $this->categoryRepository->updateCategory($request, $id);
+    }
 }
