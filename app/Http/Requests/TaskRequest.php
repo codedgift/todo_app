@@ -13,7 +13,7 @@ class TaskRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
@@ -23,7 +23,7 @@ class TaskRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             'category_id' => 'required|exists:categories,id',
@@ -33,7 +33,10 @@ class TaskRequest extends FormRequest
         ];
     }
 
-    public function messages()
+    /**
+     * @return string[]
+     */
+    public function messages(): array
     {
         return [
             'date_format' => 'Accepted date format is Y-m-d, i.e 2023-03-24',

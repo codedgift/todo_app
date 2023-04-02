@@ -54,4 +54,7 @@ Route::middleware('jwt.auth')->prefix('auth')->group(function() {
 Route::middleware('jwt.auth')->prefix('auth')->group(function() {
     //---------------- Create Category Route -------------------------------------------//
     Route::post('create/task', [TaskController::class, 'create']);
+
+    //---------------- Get All Task Route ---------------------------------------------//
+    Route::get('get/all/task', [TaskController::class, 'index']);
 });

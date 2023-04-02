@@ -31,4 +31,9 @@ class Task extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+    public function todos()
+    {
+        return $this->hasMany(Todo::class);
+    }
 }
