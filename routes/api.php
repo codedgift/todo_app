@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\TaskController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -47,4 +48,10 @@ Route::middleware('jwt.auth')->prefix('auth')->group(function() {
 
     //-------------- Delete Cateogry Route --------------------------------------------//
     Route::delete('category/{id}/delete', [CategoryController::class, 'destroy']);
+});
+
+//----------------------- Task Routes --------------------------------------------//
+Route::middleware('jwt.auth')->prefix('auth')->group(function() {
+    //---------------- Create Category Route -------------------------------------------//
+    Route::post('create/task', [TaskController::class, 'create']);
 });
