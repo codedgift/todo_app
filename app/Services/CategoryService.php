@@ -33,4 +33,12 @@ class CategoryService extends AppBaseController
     {
         return $this->categoryRepository->createCategory($request, $user);
     }
+
+    /**
+     * @return mixed
+     */
+    public function getAllCategory()
+    {
+        return $this->categoryRepository->allCategory();
+    }
 }

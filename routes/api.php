@@ -38,4 +38,7 @@ Route::middleware('guest:api')->group(function () {
 Route::middleware('jwt.auth')->prefix('auth')->group(function() {
     //---------------- Create Category Route -------------------------------------------//
     Route::post('create/category', [CategoryController::class, 'create']);
+
+    //-------------- Get All Cateogries Route -----------------------------------------//
+    Route::get('get/all/category', [CategoryController::class, 'index']);
 });

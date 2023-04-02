@@ -6,6 +6,7 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Utilities\GeneralConstants;
 use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
@@ -52,5 +53,17 @@ class CategoryRepository extends AppBaseController
         }
     }
 
+    /**
+     * @return mixed
+     */
+    public function allCategory()
+    {
+        $categories = Cache::remember('categories', 5, function () {
+            return Category::all();
+        });
+
+        $message = "All Categories";
+        return $this->successResponse($categories, GeneralConstants::SUCCESS_TEXT, $message, $message);
+    }
 
 }
