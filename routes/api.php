@@ -44,4 +44,7 @@ Route::middleware('jwt.auth')->prefix('auth')->group(function() {
 
     //-------------- Update Cateogry Route --------------------------------------------//
     Route::patch('category/{id}/update', [CategoryController::class, 'update']);
+
+    //-------------- Delete Cateogry Route --------------------------------------------//
+    Route::delete('category/{id}/delete', [CategoryController::class, 'destroy']);
 });

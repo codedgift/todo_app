@@ -53,4 +53,15 @@ class CategoryController extends AppBaseController
 
         return $this->categoryService->updateCategory($request, $id);
     }
+
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public function destroy($id)
+    {
+        auth('api')->user();
+
+        return $this->categoryService->deleteCategory($id);
+    }
 }

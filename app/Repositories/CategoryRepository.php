@@ -5,6 +5,7 @@ use App\Http\Controllers\AppBaseController;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Utilities\GeneralConstants;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
@@ -79,6 +80,30 @@ class CategoryRepository extends AppBaseController
 
         $message = "Category Data Updated Successfully";
         return $this->successResponse('Successfully Updated', GeneralConstants::SUCCESS_TEXT, $message, $message);
+    }
+
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public function deleteCategory($id)
+    {
+        try {
+
+            $category = Category::findOrFail($id);
+            $category->delete();
+
+            $message = "Category Data Deleted Successfully";
+
+            return $this->successResponse('Successfully Deleted', GeneralConstants::SUCCESS_TEXT, $message, $message);
+
+        } catch (ModelNotFoundException $e) {
+
+            $message = "Error Deleting a record!";
+            return $this->errorResponse($e->getMessage(), GeneralConstants::ERROR_TEXT, $message);
+
+        }
+
     }
 
 }
