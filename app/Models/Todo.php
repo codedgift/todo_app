@@ -9,6 +9,9 @@ class Todo extends Model
 {
     use HasFactory;
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function task()
     {
         return $this->belongsTo(Task::class);

@@ -27,11 +27,17 @@ class Task extends Model
         'end_date'
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function category()
     {
         return $this->belongsTo(Category::class);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function todos()
     {
         return $this->hasMany(Todo::class);
