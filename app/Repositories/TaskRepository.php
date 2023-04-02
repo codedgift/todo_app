@@ -3,6 +3,7 @@ namespace App\Repositories;
 
 use App\Http\Controllers\AppBaseController;
 use App\Models\Task;
+use App\Models\Todo;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -19,13 +20,49 @@ class TaskRepository extends AppBaseController
     public function allTasks($user)
     {
 
-        $task = Cache::remember('tasks_' . $user->id, 5, function () use ($user) {
+        $tasks = Cache::remember('tasks_' . $user->id, 5, function () use ($user) {
             return Task::with('todos')->where('user_id', $user->id)->get();
         });
 
+        static::addObjectsToPayload($tasks);
+
         $message = "All Tasks";
-        return $this->successResponse($task, GeneralConstants::SUCCESS_TEXT, $message, $message);
+        return $this->successResponse($tasks, GeneralConstants::SUCCESS_TEXT, $message, $message);
     }
+
+    /**
+     * @param $tasks
+     * @return void
+     */
+    public static function addObjectsToPayload($tasks)
+    {
+
+        foreach ($tasks as $task) {
+
+            $todoCompleted = self::countCompletedTodos($task->id);
+
+            $task->todo_completed = !is_null($todoCompleted) ? [
+                'status' => $todoCompleted
+            ] : null;
+        }
+    }
+
+    /**
+     * @param $task_id
+     * @return string
+     */
+    public static function countCompletedTodos($task_id): string
+    {
+        $totalTodos = Todo::where('task_id', $task_id)->count();
+        $completedTodos = Todo::where('task_id', $task_id)->where('status', 1)->count();
+
+        if ($completedTodos > 0) {
+            return $completedTodos.'/'.$totalTodos.' completed';
+        } else {
+            return '0/'.$totalTodos.' completed';
+        }
+    }
+
 
     /**
      * @param Request $request
