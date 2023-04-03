@@ -162,4 +162,16 @@ class TaskService extends AppBaseController
         return $this->taskRepository->changeTaskPriority($request, $id);
     }
 
+    public function changeTaskStatus(Request $request, $user, $id)
+    {
+        if ($this->validateTaskID($id, $user) == NULL) {
+            $error = "Invalid Task ID";
+            $message = "Task ID does not belong to this user";
+
+            return $this->errorResponse($error, GeneralConstants::ERROR_TEXT, $message);
+        }
+
+        return $this->taskRepository->changeTaskStatus($request, $id);
+    }
+
 }

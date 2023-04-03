@@ -167,4 +167,18 @@ class TaskRepository extends AppBaseController
         $message = "Task Data Updated Successfully";
         return $this->successResponse('Successfully Updated!', GeneralConstants::SUCCESS_TEXT, $message, $message);
     }
+
+    /**
+     * @param Request $request
+     * @param $id
+     * @return mixed
+     */
+    public function changeTaskStatus(Request $request, $id)
+    {
+        Task::where('id', $id)->update(['status' => (string) $request['status']]);
+
+        $message = "Task Data Updated Successfully";
+        return $this->successResponse('Successfully Updated!', GeneralConstants::SUCCESS_TEXT, $message, $message);
+        
+    }
 }

@@ -66,4 +66,7 @@ Route::middleware('jwt.auth')->prefix('auth')->group(function() {
 
     //------------ Change Task Priority Route ----------------------------------------//
     Route::patch('task/change/{id}/priority', [TaskController::class, 'changeTaskPriority']);
+
+    //------------ Change Task Priority Route ----------------------------------------//
+    Route::patch('task/change/{id}/status', [TaskController::class, 'changeTaskStatus']);
 });
